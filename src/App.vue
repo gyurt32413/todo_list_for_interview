@@ -1,18 +1,19 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/todolist">Todo-List</router-link> |
+    <router-link to="/management">Management</router-link>
   </nav>
   <router-view />
 </template>
 
 <style>
+@import "@/assets/reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;300;400;500;600;700&display=swap");
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans", sans-serif, Arial, Avenir, Helvetica;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: #000000;
 }
 
 nav {
@@ -21,7 +22,7 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #959fa8;
 }
 
 nav a.router-link-exact-active {
