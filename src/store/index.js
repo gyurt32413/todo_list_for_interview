@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    todos: JSON.parse(localStorage.getItem("todos")),
+    todos: JSON.parse(localStorage.getItem("todos")) || [],
   },
   getters: {},
   mutations: {

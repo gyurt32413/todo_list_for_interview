@@ -18,6 +18,7 @@
           @click="completeTodo(todo.id)"
           type="button"
           class="done-button"
+          :disabled="todo.completed"
         >
           完成
         </button>
@@ -35,30 +36,9 @@ import { ref, watch } from "vue";
 import { v4 as uuidv4 } from "uuid";
 import { useStore } from "vuex";
 
+// 從store裡取得todos資料或Todo變動時更新至store
 const store = useStore();
-
 const todos = ref([...store.state.todos]);
-
-const newTodoTitle = ref("");
-
-const addNewTodo = () => {
-  if (newTodoTitle.value.trim()) {
-    todos.value.push({
-      id: uuidv4(),
-      title: newTodoTitle.value.trim(),
-      completed: false,
-    });
-  }
-  newTodoTitle.value = "";
-};
-
-const completeTodo = (todoId) => {
-  todos.value.forEach((item) => {
-    if (item.id === todoId) {
-      item.completed = !item.completed;
-    }
-  });
-};
 watch(
   todos,
   () => {
@@ -68,6 +48,30 @@ watch(
     deep: true,
   }
 );
+
+// 新增newTodo
+const newTodoTitle = ref("");
+const addNewTodo = () => {
+  if (newTodoTitle.value.trim()) {
+    todos.value.push({
+      id: uuidv4(),
+      title: newTodoTitle.value.trim(),
+      completed: false,
+    });
+  } else {
+    alert("新增內容不可為空白");
+  }
+  newTodoTitle.value = "";
+};
+
+// 點擊完成Todo
+const completeTodo = (todoId) => {
+  todos.value.forEach((item) => {
+    if (item.id === todoId) {
+      item.completed = !item.completed;
+    }
+  });
+};
 </script>
 
 <style scoped>
@@ -82,7 +86,11 @@ watch(
 }
 
 .done-button {
-  background: rgb(207, 243, 202);
+  background-color: rgb(207, 243, 202);
   margin-right: 10px;
+}
+
+.completed .done-button {
+  background-color: #ccc;
 }
 </style>

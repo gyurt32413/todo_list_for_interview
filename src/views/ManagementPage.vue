@@ -37,14 +37,9 @@
 import { ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 
+// 從store裡取得todos資料或刪除所有Todos時更新至store
 const store = useStore();
-
 const todos = ref([...store.state.todos]);
-
-const deleteAllTodo = () => {
-  todos.value = [];
-};
-
 watch(
   todos,
   () => {
@@ -55,12 +50,16 @@ watch(
   }
 );
 
-const totalTodoNum = computed(() => todos.value.length);
+// 刪除所有Todo
+const deleteAllTodo = () => {
+  todos.value = [];
+};
 
+// todo清單統計資料
+const totalTodoNum = computed(() => todos.value.length);
 const unCompletedNum = computed(
   () => todos.value.filter((_item) => !_item.completed).length
 );
-
 const completedPersontage = computed(() => {
   if (!totalTodoNum.value) {
     return 0;

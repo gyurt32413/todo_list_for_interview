@@ -15,6 +15,9 @@ button {
 button:hover {
   cursor: pointer;
 }
+button:disabled {
+  cursor: default;
+}
 .todo-item {
   margin-bottom: 20px;
 }
