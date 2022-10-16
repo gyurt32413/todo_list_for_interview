@@ -3,6 +3,11 @@ import HomeView from "../views/TodoList.vue";
 
 const routes = [
   {
+    path: "/",
+    name: "root",
+    redirect: "/todolist",
+  },
+  {
     path: "/todolist",
     name: "todolist",
     component: HomeView,
